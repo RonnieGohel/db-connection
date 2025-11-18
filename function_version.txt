@@ -1,0 +1,25 @@
+/**
+ * Function to get data from the database
+ * @param {string} sql The SQL query you are sending to the database
+ */
+const getData = async (sql) => {
+  connection.connect(function (err) {
+    if (err) throw err;
+    //   console.log("Connected!");
+    connection.query(sql, async function (err, result) {
+      if (err) {
+        throw err; // shows if database connection error
+        return;
+      } else {
+        const data = await JSON.parse(JSON.stringify(result)); // convert result into JSON
+        console.log(`inside function`);
+        console.log(data); // show the JSON data
+        return data;
+      }
+    });
+  });
+};
+
+console.log(`outside the function`);
+const dbData = await getData(sqlQuery);
+console.log(dbData);
