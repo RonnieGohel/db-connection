@@ -2,11 +2,12 @@
 
 This script can be used to check connection to a database and receive data from it.
 
-## To run this script
+## To run the `dbcon.js` script
 
-1. Create a `.env` file, containig the database credentials
-2. `npm install`
-3. `node dbcon.js`
+1. Change the SQL query the `dbcon.js` file to match your database
+2. Create a `.env` file, containig the database credentials
+3. `npm install`
+4. `node dbcon.js`
 
 ## Using the SQL query functions
 
@@ -30,7 +31,7 @@ const newUser = await createUser(
   "HASH",
   "Employee",
   "Active",
-  "Networks"
+  "Networks",
 );
 console.log(newUser); // see changes such as id created
 ```

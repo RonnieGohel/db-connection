@@ -1,3 +1,7 @@
+/**
+ * Ignore this file
+ * used for other tests
+ */
 const pool = require("./dbcon");
 
 /**
@@ -18,7 +22,7 @@ async function createUser(
   password_hash,
   user_type,
   employee_status,
-  speciality
+  speciality,
 ) {
   const result = await pool.query(
     `
@@ -33,7 +37,7 @@ async function createUser(
       user_type,
       employee_status,
       speciality,
-    ] // set of values to be passed to the SQL query
+    ], // set of values to be passed to the SQL query
   );
   return result[0]; // TODO change to only return ID of new row
 }
@@ -59,7 +63,7 @@ async function getAllEmails() {
     `
     SELECT email
     FROM team06db.User;
-    `
+    `,
   );
   return result[0]; // first element contains data
 }

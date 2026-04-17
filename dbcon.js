@@ -16,4 +16,23 @@ const pool = mysql.createPool({
   queueLimit: 0, // max number of connection requests to queue, 0 means no limit
 });
 
-module.exports = pool;
+/**
+ * Function to get data from the database
+ * @param {string} sql The SQL query you are sending to the database
+ */
+const getData = async (sql) => {
+  pool.query(sql, async function (err, result) {
+    if (err) {
+      throw err; // shows if database connection error
+    } else {
+      console.log("Fetching data:");
+      const data = await JSON.parse(JSON.stringify(result)); // convert result into JSON
+      console.log(data); // show the JSON data
+      return data;
+    }
+  });
+};
+
+console.log("\n-----------------START DATABASE QUERY---------------------\n");
+const dbData = await getData("SELECT * FROM employees;");
+console.log(dbData);
